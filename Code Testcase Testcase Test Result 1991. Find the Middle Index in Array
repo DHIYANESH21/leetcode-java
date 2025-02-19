@@ -1,0 +1,16 @@
+class Solution {
+    public int findMiddleIndex(int[] nums) {
+        int totsum = 0;
+        for(int num : nums){
+            totsum+=num;
+        }
+        int leftsum =0;
+        for(int i=0;i<nums.length;i++){
+            if(leftsum*2 +nums[i]==totsum){
+                return i;
+            }
+            leftsum+=nums[i];
+        }
+        return -1;
+    }
+}
