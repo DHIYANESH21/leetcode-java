@@ -1,0 +1,28 @@
+class Solution {
+    public int[] getAverages(int[] nums, int k) {
+        int [] res = new int [nums.length];
+        for(int j=0;j<nums.length;j++){
+            res[j]=-1;
+        }
+        int r=0,c=0 ,t =k*2+1 ;
+        long sum=0;
+        if(nums.length<t){
+            return res;
+        }
+        for(int i=0;i<t;i++){
+            sum+=nums[i];
+        }
+        r=t;
+        int m=r-k-1;
+        while(r<nums.length+1){
+            res[m]=(int)(sum/t);
+            if(r<nums.length) {
+                sum=sum+nums[r];
+                sum=sum-nums[r-t];
+            }
+            r++;
+            m++;
+        }
+        return res ;
+    }
+}
