@@ -1,0 +1,40 @@
+class Solution {
+    public boolean checkMid(int [] candies,int m,long k){
+        int i=0;
+        long c=0;
+        long kl=0;
+        if (m==0) return false;
+        while(i<candies.length){
+            kl =candies[i]/m;
+            c+=kl;
+            i++;
+        }
+        if(c>=k){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public int maximumCandies(int[] candies, long k) {
+        if(candies.length==1 ){
+            long dh = candies[0]/k;
+            return (int) dh;
+        } 
+        int maxc = 0;
+        for(int i=0;i<candies.length;i++){
+            if(maxc<candies[i]) maxc = candies[i];
+        }
+        int low = 1,high = maxc,ans = 0;
+        while(low<=high){
+            int mid = low+(high-low)/2;
+            boolean res = checkMid(candies,mid,k);
+            if(res){
+                low = mid+1;
+                if(ans <mid) ans =mid;
+            }else{
+                high = mid-1;
+            }
+        }
+        return ans;
+    }
+}
