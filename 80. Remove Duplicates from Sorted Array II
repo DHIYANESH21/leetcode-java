@@ -1,0 +1,21 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int ln = 0,l=0,r=0,c=0,samc=0;
+        while(r<nums.length){
+            ln = nums[r];
+            samc=1;
+            while(r<nums.length && ln==nums[r]){
+                if(samc<=2){
+                    nums[c]=nums[r];
+                    c++;
+                    r++;
+                    samc++;
+                }else{
+                    r++;
+                    samc++;
+                }
+            }
+        }
+        return c;
+    }
+}
