@@ -1,0 +1,18 @@
+class Solution {
+    public int numSubarraysWithSum(int[] nums, int goal) {
+        return countSubArrays(nums,goal)-countSubArrays(nums,goal-1);
+    }
+    private int countSubArrays(int[] nums,int goal){
+        int l=0,r=0,sum=0,count=0;
+        while(r<nums.length){
+            sum=sum+nums[r];
+            while(sum>goal && l<=r){
+                sum-=nums[l];
+                l++;
+            }
+            count+=r-l+1;
+            r++;
+        }
+        return count;
+    }
+}
