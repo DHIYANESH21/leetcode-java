@@ -1,0 +1,17 @@
+class Solution {
+    public int[] leftRightDifference(int[] nums) {
+        int suffix [] = new int[nums.length];
+        int sum=0;
+        for(int i=nums.length-1;i>=0;i--){
+            suffix[i]=sum;
+            sum+=nums[i];
+        }
+        int [] res = new int[nums.length];
+        int prefix=0;
+        for(int i=0;i<nums.length;i++){
+            res[i]=Math.abs(prefix-suffix[i]);
+            prefix+=nums[i];
+        }
+        return res;
+    }
+}
