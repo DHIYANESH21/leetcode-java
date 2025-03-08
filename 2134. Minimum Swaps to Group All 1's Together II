@@ -1,0 +1,30 @@
+class Solution {
+    public int minSwaps(int[] nums){
+        int c=0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==1) c++;
+        }
+        int [] arr = new int[nums.length+c];
+        for(int i=0;i<arr.length;i++){
+            arr[i]=nums[i%nums.length];
+        }
+        int zero=0,minzero=0;
+        for(int i=0;i<c;i++){
+            if(arr[i]==0) zero++;
+        }
+        System.out.print(zero);
+        minzero=zero;
+        int r=c;
+        while(r<arr.length){
+            if(arr[r-c]==0){
+                zero--;
+            }
+            if(arr[r]==0){
+                zero++;
+            }
+            minzero=Math.min(minzero,zero);
+            r++;
+        }
+        return minzero;
+    }
+}
