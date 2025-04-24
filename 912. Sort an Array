@@ -1,0 +1,33 @@
+class Solution {
+    public void merge(int [] nums,int low,int mid,int high){
+        int [] temp = new int [high-low+1];
+        int left = low,right = mid+1,j=0;
+        while(left<=mid && right<=high){
+            if(nums[left]<nums[right]){
+                temp[j++] = nums[left++];
+            }else{
+                temp[j++]= nums[right++];
+            }
+        }
+        while(left<=mid){
+            temp[j++] = nums[left++];
+        }
+        while(right<=high){
+            temp[j++] = nums[right++];
+        }
+        for(int i = 0;i<temp.length;i++){
+            nums[i+low] = temp[i];
+        }
+    }
+    public void divide(int [] nums,int low,int high){
+        if(low>=high) return ;
+        int mid  = (low+high)/2;
+        divide(nums,low,mid);
+        divide(nums,mid+1,high);
+        merge(nums,low,mid,high);
+    }
+    public int[] sortArray(int[] nums) {
+        divide(nums,0,nums.length-1);
+        return nums;
+    }
+}
