@@ -1,0 +1,22 @@
+class Solution {
+    public List<List<Integer>> list = new ArrayList<>();
+    public List<Integer> samlist = new ArrayList<>();
+    public void checkCombination(int[] nums,int idx,int target){
+        if(idx==nums.length){
+            if(target==0){
+                list.add(new ArrayList<>(samlist));
+            }
+            return;
+        }
+        if(target>=nums[idx]){
+            samlist.add(nums[idx]);
+            checkCombination(nums,idx,target-nums[idx]);
+            samlist.remove(samlist.size()-1);
+        }
+        checkCombination(nums,idx+1,target);
+    }
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        checkCombination(candidates,0,target);
+        return list;
+    }
+}
